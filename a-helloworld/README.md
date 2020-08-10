@@ -1,5 +1,5 @@
 # a-helloworld
-In this subdirectory is a `HelloWorld.java` with a main that prints `main` 
+In this subdirectory is a `HelloWorld.java` with a main 
 that prints out `"Hello World"` to `stdout` when compiled and run.
 
 Following, the class from the default package is moved to a package called 
@@ -22,7 +22,7 @@ This will run with your pre-defined manifest file
 `java -cp jarfilename classpath`
 In this case:
 `java -cp HelloWorld.jar com.contrastsecurity.HelloWorld`
-## With Manifest File
+### With Manifest File
 `java -jar jarfilename`
 
 ### Important Notes
