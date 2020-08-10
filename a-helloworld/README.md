@@ -24,5 +24,5 @@ application software/libs on the Java platform.
 ### Important Notes
 When creating your JAR file, it is important to add a manifest to your JAR file in
 order to have more control over what jar command generates. In com/contrastsecurity
-directory, an `example_manifest.txt` was created. This text file serves our
-applications entry point.
+directory, an `example_manifest.txt` was created. In this file, a Main-Class
+attribute was added. This text file serves our applications entry point.
