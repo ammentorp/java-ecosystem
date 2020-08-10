@@ -26,7 +26,3 @@ When creating your JAR file, it is important to add a manifest to your JAR file 
 order to have more control over what jar command generates. In com/contrastsecurity
 directory, an `example_manifest.txt` was created. This text file serves our
 applications entry point.
-
-Write a README in this directory describing how to build your code and 
-the context around what it means. Ideally, someone could read your README 
-and answer the questions asked in this ticket.
