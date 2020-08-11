@@ -1,6 +1,5 @@
 plugins {
     application
-    distribution
 }
 
 application {

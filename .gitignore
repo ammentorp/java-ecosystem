@@ -1,5 +1,6 @@
+# Ignore any IDE files
 .idea
-java-ecosystem.iml
+*.iml
 
 # Ignore Gradle project-specific cache directory
 .gradle
