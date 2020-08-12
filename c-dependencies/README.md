@@ -49,7 +49,7 @@ Compile and run this code.
 Notice the run task creates a build folder like it did in b-gradle-application.
 Inside this build folder we see `classes`, `generated`, and `tmp` dirs.
 
-## distTar Task
+### distTar Task
 After running distTar command we see it creates a distributions dir 
 (where tarball is located) along with `libs`, `scripts` sub directories.
  
