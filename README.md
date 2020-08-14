@@ -16,4 +16,3 @@ How do I build a Servlet web application? How do I package it in a docker image 
 What is Jakarta EE? What is Java EE? What is J2EE?
 
 What is a Java agent? How do I build one? How do I attach it to all the programs we’ve written as part of this tutorial?
-
