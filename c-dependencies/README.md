@@ -86,4 +86,5 @@ This means that the JAR functions as an "all-in-one" distribution of the
 software, without needing any other Java code. The advantage is that you 
 can distribute your uber-jar and not care at all whether or not 
 dependencies are installed at the destination, as your uber-jar actually 
-has no dependencies.
+has no dependencies. An Uber JAR is a JAR that contains both our package 
+and all its dependencies in one single JAR file.
