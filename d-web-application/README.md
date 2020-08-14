@@ -55,21 +55,36 @@ Do this by first adding your API dependency to `build.gradle.kts` as such:
 `dependencies {
      implementation("javax.ws.rs:javax.ws.rs-api:2.1.1")
  }`
- 
- Next, import the necessary classes in `HelloWorld.java`. 
 
-       import javax.ws.rs.ApplicationPath;
-       import javax.ws.rs.GET;
-       import javax.ws.rs.Path;
-Add the necessary annotations to method headers.
+Next, we will create 2 new classes: 
+* `TestApplication.java`
+* `JerseyEndpoint.java` (our API endpoint accessible at the path `/ping`)
 
-For Jersey installation, add the following line in the project dependency
-section:
+`TestApplication` extends `javax.ws.rs.core.Application`. This way allows a 
+portable way to configuring resources and providers in a JAX-RS web service.
+This class calls `JerseyEndpoint`. This `Application` class is JAX-RS config 
+class.
 
-`implementation("org.glassfish.jersey.containers:jersey-container-servlet-core:2.26")`
+`JerseyEndpoint` is where we will insert our `GET` and `PATH` HTTP requests. 
+Inside this class we also want to use one of the static methods to create
+a Response instance using a ResponseBuilder.
 
-### Using the Jersey Implementation of JAX-RS
-Use the Jersey implementation of JAX-RS to deploy that endpoint to an embedded 
-HTTP server in your program. An embedded HTTP server is a component of a 
-software system that implements the HTTP protocol.
+Now that we have these 2 new classes, we want our driver, `HelloWorld`, to 
+build this application and deploy our endpoint to an embedded HTTP server.
+In this case, we used Grizzly. An embedded HTTP server is a component of a 
+software system that implements the HTTP protocol. Other examples of embedded 
+HTTP servers include Jetty, Tomcat, etc. To deploy `JerseyEndpoint` we will
+be using the Jersey implementation of JAX-RS.
 
+Import the following project dependencies:
+* `implementation("org.glassfish.jersey.containers:jersey-container-servlet-core:2.26")`
+* `implementation("org.glassfish.jersey.inject" , "jersey-hk2", "2.31")`
+* `runtimeOnly("org.glassfish.jaxb", "jaxb-runtime", "2.3.2")`
+
+Notice the last dependency is used only at runtime.
+
+We now want our `HelloWorld` class to extend `ResourceConfig`, which is the resource
+configuration for our web application. Create a `final ResourceConfig` instance of our
+application, `TestApplication`. Next, create an HttpServer instance of Grizzly to our
+`localhost:8080` using a UriBuilder. Run the web application on your machine and send 
+it an HTTP request to http://localhost:8080/ping to make sure it works.

@@ -7,3 +7,9 @@
 
 # Ignore Gradle build output directory
 build
+
+# Ignore zippy output directory
+zippy
+
+jerseyjars.zip
+
