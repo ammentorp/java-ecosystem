@@ -21,6 +21,7 @@ dependencies {
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 tasks.jar {
