@@ -3,12 +3,12 @@ package com.contrastsecurity;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 
-import static org.objectweb.asm.Opcodes.ASM5;
+import static org.objectweb.asm.Opcodes.ASM8;
 
 public final class HelloWorldClassVisitor extends ClassVisitor {
 
     HelloWorldClassVisitor(final ClassVisitor classVisitor) {
-        super(ASM5, classVisitor);
+        super(ASM8, classVisitor);
     }
 
     @Override
@@ -21,8 +21,10 @@ public final class HelloWorldClassVisitor extends ClassVisitor {
 
         final MethodVisitor mv = super.visitMethod(access, name, descriptor, signature, exceptions);
 
-        return new HelloWorldMethodVisitor(mv);
-
+        if ("png".equals(name)) {
+            return new PingAdapter(mv, access, name, descriptor);
+        } else {
+            return new HelloWorldMethodVisitor(mv);
+        }
     }
-
 }

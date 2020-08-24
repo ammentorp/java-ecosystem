@@ -3,7 +3,9 @@ plugins {
 }
 
 dependencies {
-    implementation("org.ow2.asm:asm:7.0")
+    implementation("org.ow2.asm:asm:8.0.1")
+    implementation("org.ow2.asm", "asm-commons", "8.0.1")
+
 }
 
 repositories {

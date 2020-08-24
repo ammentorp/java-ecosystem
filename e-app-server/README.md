@@ -16,12 +16,13 @@ URL pattern as our path `/ping`.
 Inspect the contents of that file. How does it differ from a JAR?
 
 Unpacked WAR has 2 subclasses:
-extracted
+
+`extracted
     |-- META-INF
             |-- MANIFEST.MF
     |-- WEB-INF
             |-- classes (contains com.contrastsecurity package and classes)
-            |-- lib (contains all library deps)
+            |-- lib (contains all library deps)`
             
             
 ## Create a Dockerfile to build a docker image based on the Tomcat base image 
@@ -57,9 +58,9 @@ To verify `e-app-server` image is build and ready to be used, run the command: `
 
 ## Run the Container
 
-`docker run -d -p 8080:8080 <image-name>`
+`docker run -rm -d -p 8080:8080 <image-name>`
 
-Now go to `http://localhost:8080/ping` and check that it works. 
+Now go to `http://localhost:8080/ping` and check it works. 
 
 ## Docker Image vs Container
 ### Image
@@ -70,5 +71,5 @@ machines.
 
 ### Container
 Docker containers more or less an instance of an image. Each container runs separately,
-and you can modfy the container while it's running. Containers are'nt meant to be shared.
-Each Docker container on your computer is isolated and independent from one another.
+and you can modify the container while it's running. Containers aren't meant to be shared.
+Each Docker container on your computer is isolated and independent of one another.

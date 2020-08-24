@@ -24,20 +24,26 @@ final class HelloWorldClassFileTransformer implements ClassFileTransformer {
                             byte[] classfileBuffer)
             throws IllegalClassFormatException {
 
-        final ClassReader reader;
+        if("com/contrastsecurity/JerseyEndpoint".equals(className)
+                || "com/contrastsecurity/HelloWorld".equals(className)) {
+            final ClassReader reader;
 
-        try {
-            reader = new ClassReader(new ByteArrayInputStream(classfileBuffer));
-        } catch (IOException e) {
-            throw new IllegalArgumentException("fail to read class" + className, e);
+            try {
+                reader = new ClassReader(new ByteArrayInputStream(classfileBuffer));
+            } catch (IOException e) {
+                throw new IllegalArgumentException("fail to read class" + className, e);
+            }
+
+            final int flags = ClassWriter.COMPUTE_MAXS;
+            final ClassWriter writer = new ClassWriter(flags);
+
+            final ClassVisitor visitor = new HelloWorldClassVisitor(writer);
+
+            reader.accept(visitor, 0);
+            return writer.toByteArray();
         }
 
-        final int flags = 0;
-        final ClassWriter writer = new ClassWriter(flags);
-        final ClassVisitor visitor = new HelloWorldClassVisitor(writer);
-
-        reader.accept(visitor, flags);
-        return writer.toByteArray();
+        return classfileBuffer;
 
     }
 }

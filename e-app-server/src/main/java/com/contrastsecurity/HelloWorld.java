@@ -19,7 +19,7 @@ public class HelloWorld extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        response.getWriter().println("<p>" + "Hello World" + "</p>");
+        response.getWriter().println("Hello World");
     }
 
 }

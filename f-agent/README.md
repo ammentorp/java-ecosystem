@@ -76,6 +76,44 @@ in `build/libs` doesn't include all the dependencies you need in order to run
 your project.
 
 Now, we are able to successfully attach our agent to `b-gradle-application` and
-run it on `com.contrastsecurity.HelloWorld` by again running the command:
+run it on `com.contrastsecurity.HelloWorld` by again running the command (from
+`f-agent` dir):
 
-`java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005 -javaagent:path/to/file.jar -cp b-gradle-application/build/libs/b-gradle-application.jar com.contrastsecurity.HelloWorld`
+`java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005 \
+-javaagent:build/libs/f-agent.jar -cp \
+b-gradle-application/build/libs/b-gradle-application.jar \
+com.contrastsecurity.HelloWorld`
+
+#### To run a-helloworld:
+
+`java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005 \
+-javaagent:build/libs/f-agent.jar -cp ../a-helloworld/HelloWorld.jar \
+com.contrastsecurity.HelloWorld`
+
+
+#### To run c-dependencies:
+
+Add the following command to your `c-dependencies` build file:
+`applicationDefaultJvmArgs = listOf(-javaagent:build/libs/f-agent.jar)`
+
+Or to attach remote debugger:
+`listOf("-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005", "-javaagent:../f-agent/build/libs/f-agent.jar")`
+
+
+#### To run d-web-application:
+
+Add the following command to your `d-web-application` build file:
+`applicationDefaultJvmArgs = listOf(-javaagent:build/libs/f-agent.jar)`
+
+Or to attach remote debugger:
+`listOf("-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005", "-javaagent:../f-agent/build/libs/f-agent.jar")`
+
+
+#### To run e-app-server:
+
+Edit your Dockerfile to include a new `COPY` statement as well as a new `ENV` variable as such:
+
+`COPY f-agent/build/libs/f-agent.jar /usr/local/
+ENV CATALINA_OPTS="-javaagent:/usr/local/f-agent.jar -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005"`
+
+to attach the agent and remote debugger. Further, add your classname to your agents `HelloWorldClassFileTransformer`.

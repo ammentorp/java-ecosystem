@@ -4,6 +4,7 @@ plugins {
 
 application {
     mainClassName = "com.contrastsecurity.HelloWorld"
+    applicationDefaultJvmArgs = listOf("-javaagent:../f-agent/build/libs/f-agent.jar")
 }
 
 tasks.jar {
